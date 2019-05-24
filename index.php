@@ -40,7 +40,14 @@ if (!is_null($events['events'])) {
             ]
         ]
     ];
-  
+ }elseif ($event['type'] == 'message' && $event['message']['type'] == 'text'){
+    
+      $replyToken = $event['replyToken'];
+      $text = "?????????????????";
+      $messages = [
+          'type' => 'text',
+          'text' => $text
+        ];  
 }else{
    $replyToken = $event['replyToken'];
       $text = "ๆ";
