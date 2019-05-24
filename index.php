@@ -18,59 +18,50 @@ if (!is_null($events['events'])) {
   // Reply only when message sent is in 'text' format
   if ($event['message']['text'] == "สวัสดี") {
       $replyToken = $event['replyToken'];
-      $text = "ไง";
-   
-        $messages = [
-       'type' => 'template',
-        'altText' => 'this is a confirm template',
-        'template' => [
-            'type' => 'confirm',
-            'text' => $text ,
-            'actions' => [
-                [
-                    'type' => 'message',
-                    'label' => '????',
-                    'text' => '????'
-                ],
-                [
-                    'type' => 'message',
-                    'label' => '???????',
-                    'text' => '???????'
-                ],
-            ]
-        ]
-    ];
- }elseif ($event['type'] == 'message' && $event['message']['type'] == 'text'){
+      $text = "สวัสดีค่ะ ยินดีต้อนรับเข้าสู่งาน HR Tech 2019 สอบถามข้อมูลด้านไหนดีคะ";
+      $messages = [
+          'type' => 'text',
+          'text' => $text
+        ]; 
+ }elseif ($event['type'] == 'message' && $event['message']['type'] == 'วันที่ 28 Stage A'){
     
       $replyToken = $event['replyToken'];
-      $text = "?????????????????";
+      $text = "Stage A";
       $messages = [
           'type' => 'text',
           'text' => $text
         ];  
+}elseif ($event['type'] == 'message' && $event['message']['type'] == 'วันที่ 28 Stage B'){
+    
+      $replyToken = $event['replyToken'];
+      $text = "Stage B";
+      $messages = [
+          'type' => 'text',
+          'text' => $text
+        ];  
+}elseif ($event['type'] == 'message' && $event['message']['type'] == 'วันที่ 29 Stage A'){
+    
+      $replyToken = $event['replyToken'];
+      $text = "Stage A";
+      $messages = [
+          'type' => 'text',
+          'text' => $text
+        ]; 
+}elseif ($event['type'] == 'message' && $event['message']['type'] == 'วันที่ 29 Stage B'){
+    
+      $replyToken = $event['replyToken'];
+      $text = "Stage B";
+      $messages = [
+          'type' => 'text',
+          'text' => $text
+        ];               
 }else{
    $replyToken = $event['replyToken'];
-      $text = "ๆ";
+      $text = "พูดว่าอะไรนะคะ";
           $messages = [
-                 'type' => 'template',
-                  'altText' => 'this is a confirm template',
-                  'template' => [
-                      'type' => 'confirm',
-                      'text' => $text ,
-                      'actions' => [
-                          [
-                              'type' => 'message',
-                              'label' => '????',
-                              'text' => '????'
-                          ],
-                          [
-                              'type' => 'message',
-                              'label' => '???????',
-                              'text' => '???????'
-                          ]
-                      ]
-                  ]
-              ];       
+          'type' => 'text',
+          'text' => $text
+        ]; 
      
   }
   
