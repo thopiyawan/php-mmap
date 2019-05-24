@@ -1,5 +1,6 @@
 <?php
-    $accessToken = "p++VyfIIYOmmgOxMpJvCm3rpBTqvVVo/9F+uyt/KXsQu5SWjtrYUQUp8XPNQSc5tHCuu0Cv2fSbvwv0/xZqYw+TEjmmqW2mjC5NB9BcVGgvc9j+SSzl6mKa9c6vstzKroBupFTDQlIgp9/qufg9dOAdB04t89/1O/w1cDnyilFU=";//copy Channel access token ??????????????????
+    $accessToken = "p++VyfIIYOmmgOxMpJvCm3rpBTqvVVo/9F+uyt/KXsQu5SWjtrYUQUp8XPNQSc5tHCuu0Cv2fSbvwv0/xZqYw+TEjmmqW2mjC5NB9BcVGgvc9j+SSzl6mKa9c6vstzKroBupFTDQlIgp9/qufg9dOAdB04t89/1O/w1cDnyilFU=
+";//copy Channel access token ??????????????????
     
     $content = file_get_contents('php://input');
     $arrayJson = json_decode($content, true);
@@ -10,12 +11,48 @@
     
     //???????????????????
     $message = $arrayJson['events'][0]['message']['text'];
-#???????? Message Type "Video"
-    if($message == "video"){
+#???????? Message Type "Text"
+    if($message == "??????"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-        $arrayPostData['messages'][0]['type'] = "video";
-        $arrayPostData['messages'][0]['originalContentUrl'] = "";//??? url ??? video ?????????????
-        $arrayPostData['messages'][0]['previewImageUrl'] = "";//?????? preview ??? video
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "???????????";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    #???????? Message Type "Sticker"
+    else if($message == "?????"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "sticker";
+        $arrayPostData['messages'][0]['packageId'] = "2";
+        $arrayPostData['messages'][0]['stickerId'] = "46";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    #???????? Message Type "Image"
+    else if($message == "??????????"){
+        $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "image";
+        $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+        $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    #???????? Message Type "Location"
+    else if($message == "????????????????"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "location";
+        $arrayPostData['messages'][0]['title'] = "???????????";
+        $arrayPostData['messages'][0]['address'] =   "13.7465354,100.532752";
+        $arrayPostData['messages'][0]['latitude'] = "13.7465354";
+        $arrayPostData['messages'][0]['longitude'] = "100.532752";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    #???????? Message Type "Text + Sticker ?? 1 ?????"
+    else if($message == "??????"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "?????????????";
+        $arrayPostData['messages'][1]['type'] = "sticker";
+        $arrayPostData['messages'][1]['packageId'] = "1";
+        $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
     }
 function replyMsg($arrayHeader,$arrayPostData){
@@ -31,5 +68,5 @@ function replyMsg($arrayHeader,$arrayPostData){
         $result = curl_exec($ch);
         curl_close ($ch);
     }
-exit;
+   exit;
 ?>
