@@ -1,5 +1,5 @@
 <?php
-    $accessToken = "";//copy Channel access token ??????????????????
+    $accessToken = "p++VyfIIYOmmgOxMpJvCm3rpBTqvVVo/9F+uyt/KXsQu5SWjtrYUQUp8XPNQSc5tHCuu0Cv2fSbvwv0/xZqYw+TEjmmqW2mjC5NB9BcVGgvc9j+SSzl6mKa9c6vstzKroBupFTDQlIgp9/qufg9dOAdB04t89/1O/w1cDnyilFU=";//copy Channel access token ??????????????????
     
     $content = file_get_contents('php://input');
     $arrayJson = json_decode($content, true);
